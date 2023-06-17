@@ -3,22 +3,23 @@ import Input from '@/components/atoms/Input/Input';
 import { MdMovieCreation } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
-const Login = () => (
+const SignUp = () => (
   <main className="h-screen flex justify-center items-center p-6">
     <article className="flex flex-col items-center w-full">
       <MdMovieCreation className="text-primaryRed text-4xl mb-14 md:mb-16 lg:mb-20" />
 
       <form className="bg-primarySemiDarkBlue rounded-lg p-6 max-w-lg flex flex-col w-full">
-        <h1 className="text-3xl font-light">Login</h1>
+        <h1 className="text-4xl font-light">Sign Up</h1>
         <section className="flex flex-col gap-6 mt-10 mb-10">
           <Input type="text" placeholder="Email address" />
           <Input type="password" placeholder="Password" />
+          <Input type="password" placeholder="Repeat password" />
         </section>
-        <Button>Login to your account</Button>
+        <Button>Create an account</Button>
         <p className="text-center mt-6">
-          Don’t have an account?{' '}
-          <NavLink to="/signup" className="text-primaryRed">
-            Sign Up
+          Already have an account?{' '}
+          <NavLink to="/login" className="text-primaryRed">
+            Login
           </NavLink>
         </p>
       </form>
@@ -26,4 +27,4 @@ const Login = () => (
   </main>
 );
 
-export default Login;
+export default SignUp;
