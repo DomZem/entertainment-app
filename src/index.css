@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primaryDarkBlue: #10141e;
+  --primaryRed: #fc4747;
+  --primaryWhite: #ffffff;
+  --primaryGreishBlue: #5a698f;
+  --primarySemiDarkBlue: #161d2f;
+}
+
+@layer base {
+  body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    background-color: var(--primaryDarkBlue);
+    color: var(--primaryWhite);
+  }
+}
