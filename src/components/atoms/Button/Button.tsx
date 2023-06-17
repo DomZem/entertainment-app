@@ -1,11 +1,20 @@
-import { type FC } from 'react';
+import { type ButtonHTMLAttributes, type FC } from 'react';
 
-interface ButtonProps {
-  children: React.ReactNode;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  isPrimary?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ children }) => (
-  <button className="bg-primaryRed p-4 rounded-md hover:bg-primaryWhite duration-200 hover:text-primarySemiDarkBlue">
+const Button: FC<ButtonProps> = ({ children, isPrimary, ...rest }) => (
+  <button
+    {...rest}
+    type="submit"
+    className={`${
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      isPrimary
+        ? 'bg-primaryRed hover:text-primarySemiDarkBlue hover:bg-primaryWhite'
+        : 'bg-primaryDarkBlue text-primaryWhite hover:bg-primaryWhite hover:text-primaryDarkBlue'
+    } p-4 rounded-md duration-200`}
+  >
     {children}
   </button>
 );

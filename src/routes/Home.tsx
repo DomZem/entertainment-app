@@ -1,9 +1,13 @@
-import Sidebar from '@/components/organisms/Sidebar/Sidebar';
+import { useAppSelector } from '@/hooks/storeHook';
 
-const Home = () => (
-  <div className="grid grid-rows-[auto_1fr] xl:grid-cols-[auto_1fr] h-screen xl:grid-rows-1fr">
-    <Sidebar />
-  </div>
-);
+const Home = () => {
+  const { user } = useAppSelector((state) => state.auth);
+
+  return (
+    <main className="p-4">
+      <h2>Hello in home page {user?.displayName}</h2>
+    </main>
+  );
+};
 
 export default Home;

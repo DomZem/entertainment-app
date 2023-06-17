@@ -15,7 +15,9 @@ const SignUp = () => (
           <Input type="password" placeholder="Password" />
           <Input type="password" placeholder="Repeat password" />
         </section>
-        <Button>Create an account</Button>
+        <Button type="submit" isPrimary>
+          Create an account
+        </Button>
         <p className="text-center mt-6">
           Already have an account?{' '}
           <NavLink to="/login" className="text-primaryRed">

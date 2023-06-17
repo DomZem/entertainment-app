@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-
+import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_KEY,
   authDomain: 'entertainment-app-606e1.firebaseapp.com',
@@ -11,3 +11,6 @@ const firebaseConfig = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
