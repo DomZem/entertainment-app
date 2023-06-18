@@ -7,7 +7,7 @@ import { HiSquares2X2 } from 'react-icons/hi2';
 import { IoMdBookmark } from 'react-icons/io';
 import { MdLogout, MdMovieCreation, MdTv } from 'react-icons/md';
 import { RiFilmFill } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const menus = [
   {
@@ -30,6 +30,8 @@ const menus = [
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
   const user = useAppSelector((state) => state.auth.user);
 
   const handleLogout = async () => {
@@ -43,16 +45,22 @@ const Sidebar = () => {
       <nav className="flex gap-5 xl:flex-col">
         {menus.map((item) => (
           <NavLink to={item.destiny} key={item.destiny}>
-            <item.icon className="text-2xl text-primaryGreishBlue hover:text-primaryWhite duration-200" />
+            <item.icon
+              className={`text-2xl ${
+                pathname.includes(item.destiny)
+                  ? 'text-primaryWhite'
+                  : 'text-primaryGreishBlue'
+              } hover:text-primaryRed duration-20`}
+            />
           </NavLink>
         ))}
         <NavLink to="/login" onClick={handleLogout}>
-          <MdLogout className="text-2xl text-primaryGreishBlue hover:text-primaryWhite duration-200" />
+          <MdLogout className="text-2xl text-primaryGreishBlue hover:text-primaryRed duration-200" />
         </NavLink>
       </nav>
 
       <img
-        className="w-11 h-11 rounded-full border-2 border-primaryWhite"
+        className="w-7 h-7 md:w-8 md:h-8 xl:w-10 xl:h-10 rounded-full border-2 border-primaryWhite"
         src={user ? user.photoURL ?? unknownUser : unknownUser}
         alt="User Avatar"
       />

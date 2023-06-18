@@ -6,7 +6,7 @@ interface MainTemplateProps {
 }
 
 const MainTemplate: FC<MainTemplateProps> = ({ children }) => (
-  <div className="grid grid-rows-[auto_1fr] xl:grid-cols-[auto_1fr] h-screen xl:grid-rows-1fr">
+  <div className="grid grid-rows-[auto_1fr] xl:grid-cols-[auto_1fr] h-screen xl:grid-rows-1fr overflow-hidden">
     <Sidebar />
     {children}
   </div>

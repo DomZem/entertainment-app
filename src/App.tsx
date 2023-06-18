@@ -8,6 +8,7 @@ import Home from './routes/Home';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
 import { login, logout } from './store/slices/authSlice';
+import { fetchMovies } from './store/slices/moviesSlice';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const App = () => {
       }
     });
 
+    void dispatch(fetchMovies());
     return () => {
       unsub();
     };

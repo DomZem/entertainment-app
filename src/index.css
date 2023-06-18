@@ -17,4 +17,8 @@
     background-color: var(--primaryDarkBlue);
     color: var(--primaryWhite);
   }
+
+  img {
+    max-width: 100%;
+  }
 }
