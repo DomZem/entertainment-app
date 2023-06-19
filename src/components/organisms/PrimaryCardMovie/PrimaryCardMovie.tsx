@@ -9,7 +9,7 @@ interface PrimaryCardMovieProps {
 }
 
 const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
-  data: { title, category, ageRestriction, releaseYear, images },
+  data: { title, category, ageRestriction, releaseYear, images, isBookmarked },
 }) => {
   const tabletMatches = useMediaQuery('(min-width: 768px)');
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
@@ -28,7 +28,7 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
           }
           alt={`${title} picture`}
         />
-        <BookmarkButton />
+        <BookmarkButton isBookmarked={isBookmarked} />
       </section>
       <p className="flex font-light items-center gap-[6px] md:text-[13px] text-[11px] text-primaryWhite opacity-75 mt-2 mb-1">
         {releaseYear}

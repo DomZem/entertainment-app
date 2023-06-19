@@ -9,7 +9,7 @@ interface TrendingCardMovieProps {
 }
 
 const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
-  data: { title, images, releaseYear, category, ageRestriction },
+  data: { title, images, releaseYear, category, ageRestriction, isBookmarked },
 }) => {
   const tabletMatches = useMediaQuery('(min-width: 768px)');
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
@@ -27,7 +27,7 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
         }
         alt={`${title} picture`}
       />
-      <BookmarkButton isBookmarked />
+      <BookmarkButton isBookmarked={isBookmarked} />
       <div className="absolute bottom-4 left-4 translate-x-1 w-full">
         <p className="flex items-center gap-2 opacity-75 text-primaryWhite font-light text-[15px]">
           {releaseYear} <Dot />
