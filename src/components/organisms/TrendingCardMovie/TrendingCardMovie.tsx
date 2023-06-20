@@ -1,18 +1,39 @@
 import BookmarkButton from '@/components/atoms/BookmarkButton/BookmarkButton';
 import Dot from '@/components/atoms/Dot/Dot';
+import { useAppDispatch } from '@/hooks/storeHook';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { bookmarkMovie, unbookmarkMovie } from '@/store/slices/moviesSlice';
 import { type Movie } from '@/types';
 import { type FC } from 'react';
+import { MdTv } from 'react-icons/md';
+import { RiFilmFill } from 'react-icons/ri';
 
 interface TrendingCardMovieProps {
   data: Movie;
 }
 
 const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
-  data: { title, images, releaseYear, category, ageRestriction, isBookmarked },
+  data: {
+    id,
+    title,
+    images,
+    releaseYear,
+    category,
+    ageRestriction,
+    isBookmarked,
+  },
 }) => {
   const tabletMatches = useMediaQuery('(min-width: 768px)');
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
+  const dispatch = useAppDispatch();
+
+  const handleBookmarkMovie = () => {
+    void dispatch(bookmarkMovie(id));
+  };
+
+  const handleUnbookmarkMovie = () => {
+    void dispatch(unbookmarkMovie(id));
+  };
 
   return (
     <li className="relative flex-shrink-0 rounded-lg">
@@ -27,10 +48,18 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
         }
         alt={`${title} picture`}
       />
-      <BookmarkButton isBookmarked={isBookmarked} />
+      <BookmarkButton
+        isBookmarked={isBookmarked}
+        onClick={isBookmarked ? handleUnbookmarkMovie : handleBookmarkMovie}
+      />
       <div className="absolute bottom-4 left-4 translate-x-1 w-full">
         <p className="flex items-center gap-2 opacity-75 text-primaryWhite font-light text-[15px]">
           {releaseYear} <Dot />
+          {category === 'Movie' ? (
+            <RiFilmFill className="text-base" />
+          ) : (
+            <MdTv className="text-base" />
+          )}
           {category} <Dot />
           {ageRestriction}
         </p>
