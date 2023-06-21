@@ -6,7 +6,7 @@ import { type Movie } from '@/types';
 import { useState } from 'react';
 
 const Bookmarked = () => {
-  const movies = useAppSelector((state) => state.movies);
+  const movies = useAppSelector((state) => state.movies.movies);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
   const [searchPhrase, setSearchPhrase] = useState('');
 

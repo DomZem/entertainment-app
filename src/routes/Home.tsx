@@ -1,3 +1,4 @@
+import Spinner from '@/components/atoms/Spinner/Spinner';
 import Title from '@/components/atoms/Title/Title';
 import PrimaryCardMovie from '@/components/organisms/PrimaryCardMovie/PrimaryCardMovie';
 import TrendingCardMovie from '@/components/organisms/TrendingCardMovie/TrendingCardMovie';
@@ -7,24 +8,31 @@ import { type Movie } from '@/types';
 import { useState } from 'react';
 
 const Home = () => {
-  const movies = useAppSelector((state) => state.movies);
+  const movies = useAppSelector((state) => state.movies.movies);
+  const moviesStatus = useAppSelector((state) => state.movies.status);
+  const error = useAppSelector((state) => state.movies.error);
 
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
   const [searchPhrase, setSearchPhrase] = useState('');
 
   const handleSearchMovie = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchPhrase(e.target.value);
+    setSearchPhrase(e.target.value.toLowerCase());
     setFilteredMovies(
-      movies.filter((movie) => movie.title.includes(searchPhrase))
+      movies.filter((movie) => movie.title.toLowerCase().includes(searchPhrase))
     );
   };
 
-  return (
-    <MovieViewTemplate
-      searchPlaceholder="Search for movies or TV series"
-      onSearchInputChange={handleSearchMovie}
-    >
-      {searchPhrase === '' ? (
+  let content;
+
+  if (moviesStatus === 'idle') {
+    content = (
+      <div className="w-full h-full flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
+  } else if (moviesStatus === 'succeeded') {
+    if (searchPhrase === '') {
+      content = (
         <>
           <article>
             <Title>Trending</Title>
@@ -47,7 +55,9 @@ const Home = () => {
             </ul>
           </article>
         </>
-      ) : (
+      );
+    } else {
+      content = (
         <>
           <Title>
             Found {filteredMovies.length} results for `{searchPhrase}`
@@ -58,7 +68,22 @@ const Home = () => {
             ))}
           </ul>
         </>
-      )}
+      );
+    }
+  } else {
+    content = (
+      <div className="w-full h-full flex justify-center items-center">
+        <Title>{error}</Title>
+      </div>
+    );
+  }
+
+  return (
+    <MovieViewTemplate
+      searchPlaceholder="Search for movies or TV series"
+      onSearchInputChange={handleSearchMovie}
+    >
+      {content}
     </MovieViewTemplate>
   );
 };

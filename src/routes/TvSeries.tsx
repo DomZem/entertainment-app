@@ -6,7 +6,7 @@ import { type Movie } from '@/types';
 import { useState } from 'react';
 
 const TvSeries = () => {
-  const movies = useAppSelector((state) => state.movies).filter(
+  const movies = useAppSelector((state) => state.movies.movies).filter(
     (movie) => movie.category === 'TV Series'
   );
 

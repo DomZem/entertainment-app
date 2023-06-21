@@ -12,7 +12,17 @@ import {
 } from 'firebase/firestore';
 import { type AuthState } from './authSlice';
 
-const initialState: Movie[] = [];
+export interface MoviesState {
+  movies: Movie[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}
+
+const initialState: MoviesState = {
+  movies: [],
+  status: 'idle',
+  error: null,
+};
 
 export const fetchMovies = createAsyncThunk(
   'movies/fetchMovies',
@@ -71,23 +81,32 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchMovies.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(bookmarkMovie.fulfilled, (state, action) => {
-      const movieId = action.payload;
-      const movie = state.find((movie) => movie.id === movieId);
-      if (movie) {
-        movie.isBookmarked = true;
-      }
-    });
-    builder.addCase(unbookmarkMovie.fulfilled, (state, action) => {
-      const movieId = action.payload;
-      const movie = state.find((movie) => movie.id === movieId);
-      if (movie) {
-        movie.isBookmarked = false;
-      }
-    });
+    builder
+      .addCase(fetchMovies.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchMovies.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.movies = action.payload;
+      })
+      .addCase(fetchMovies.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'Something went wroung. Try maybe later!';
+      })
+      .addCase(bookmarkMovie.fulfilled, (state, action) => {
+        const movieId = action.payload;
+        const movie = state.movies.find((movie) => movie.id === movieId);
+        if (movie) {
+          movie.isBookmarked = true;
+        }
+      })
+      .addCase(unbookmarkMovie.fulfilled, (state, action) => {
+        const movieId = action.payload;
+        const movie = state.movies.find((movie) => movie.id === movieId);
+        if (movie) {
+          movie.isBookmarked = false;
+        }
+      });
   },
 });
 
