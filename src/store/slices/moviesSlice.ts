@@ -10,6 +10,7 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
+import toast from 'react-hot-toast';
 import { type AuthState } from './authSlice';
 
 export interface MoviesState {
@@ -98,6 +99,9 @@ export const moviesSlice = createSlice({
         const movie = state.movies.find((movie) => movie.id === movieId);
         if (movie) {
           movie.isBookmarked = true;
+          toast.success(`The '${movie.title}' has been bookmarked`);
+        } else {
+          toast.error(`The movie has not been bookmarked`);
         }
       })
       .addCase(unbookmarkMovie.fulfilled, (state, action) => {
@@ -105,6 +109,9 @@ export const moviesSlice = createSlice({
         const movie = state.movies.find((movie) => movie.id === movieId);
         if (movie) {
           movie.isBookmarked = false;
+          toast.success(`The '${movie.title}' has been unbookmarked`);
+        } else {
+          toast.error(`The movie has not been unbookmarked`);
         }
       });
   },
