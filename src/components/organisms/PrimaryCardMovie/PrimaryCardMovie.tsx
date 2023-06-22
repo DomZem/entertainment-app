@@ -1,11 +1,13 @@
 import BookmarkButton from '@/components/atoms/BookmarkButton/BookmarkButton';
 import Dot from '@/components/atoms/Dot/Dot';
+import CardPlayButton from '@/components/molecules/CardPlayButton/CardPlayButton';
 import { useAppDispatch } from '@/hooks/storeHook';
+import { useHover } from '@/hooks/useHover';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { bookmarkMovie, unbookmarkMovie } from '@/store/slices/moviesSlice';
 import { type Movie } from '@/types';
 import { motion } from 'framer-motion';
-import { type FC } from 'react';
+import { useRef, type FC } from 'react';
 import { MdTv } from 'react-icons/md';
 import { RiFilmFill } from 'react-icons/ri';
 
@@ -36,6 +38,9 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
   const dispatch = useAppDispatch();
 
+  const hoverRef = useRef(null);
+  const isHover = useHover(hoverRef);
+
   const handleBookmarkMovie = () => {
     void dispatch(bookmarkMovie(id));
   };
@@ -46,7 +51,7 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
 
   return (
     <motion.li variants={item}>
-      <section className="relative">
+      <section className="relative" ref={hoverRef}>
         <img
           className="rounded-lg w-full"
           src={
@@ -62,6 +67,7 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
           isBookmarked={isBookmarked}
           onClick={isBookmarked ? handleUnbookmarkMovie : handleBookmarkMovie}
         />
+        {desktopMatches ? <CardPlayButton isActive={isHover} /> : null}
       </section>
       <p className="flex font-light items-center gap-[6px] md:text-[13px] text-[11px] text-primaryWhite opacity-75 mt-2 mb-1 truncate">
         {releaseYear}

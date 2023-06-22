@@ -9,7 +9,6 @@ const Button: FC<ButtonProps> = ({ children, isPrimary, ...rest }) => (
     {...rest}
     type="submit"
     className={`${
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       isPrimary
         ? 'bg-primaryRed hover:text-primarySemiDarkBlue hover:bg-primaryWhite'
         : 'bg-primaryDarkBlue text-primaryWhite hover:bg-primaryWhite hover:text-primaryDarkBlue'

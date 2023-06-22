@@ -1,10 +1,12 @@
 import BookmarkButton from '@/components/atoms/BookmarkButton/BookmarkButton';
 import Dot from '@/components/atoms/Dot/Dot';
+import CardPlayButton from '@/components/molecules/CardPlayButton/CardPlayButton';
 import { useAppDispatch } from '@/hooks/storeHook';
+import { useHover } from '@/hooks/useHover';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { bookmarkMovie, unbookmarkMovie } from '@/store/slices/moviesSlice';
 import { type Movie } from '@/types';
-import { type FC } from 'react';
+import { useRef, type FC } from 'react';
 import { MdTv } from 'react-icons/md';
 import { RiFilmFill } from 'react-icons/ri';
 
@@ -27,6 +29,9 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
   const dispatch = useAppDispatch();
 
+  const hoverRef = useRef(null);
+  const isHover = useHover(hoverRef);
+
   const handleBookmarkMovie = () => {
     void dispatch(bookmarkMovie(id));
   };
@@ -36,7 +41,7 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
   };
 
   return (
-    <li className="relative flex-shrink-0 rounded-lg">
+    <li className="relative flex-shrink-0 rounded-lg" ref={hoverRef}>
       <img
         className="w-[240px] rounded-lg md:w-[470px]"
         src={
@@ -65,6 +70,7 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
         </p>
         <h3 className="font-medium text-[15px] mt-1 md:text-2xl">{title}</h3>
       </div>
+      {desktopMatches ? <CardPlayButton isActive={isHover} /> : null}
     </li>
   );
 };
