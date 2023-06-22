@@ -1,5 +1,4 @@
-import Title from '@/components/atoms/Title/Title';
-import PrimaryCardMovie from '@/components/organisms/PrimaryCardMovie/PrimaryCardMovie';
+import MovieList from '@/components/templates/MovieList/MovieList';
 import MovieViewTemplate from '@/components/templates/MovieViewTemplate/MovieViewTemplate';
 import { useAppSelector } from '@/hooks/storeHook';
 import { type Movie } from '@/types';
@@ -32,34 +31,17 @@ const Bookmarked = () => {
     >
       {searchPhrase === '' ? (
         <>
-          <article>
-            <Title>Bookmarked Movies</Title>
-            <ul className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8">
-              {bookmarkedMovies.map((movie) => (
-                <PrimaryCardMovie data={movie} key={movie.id} />
-              ))}
-            </ul>
-          </article>
-          <article>
-            <Title>Bookmarked TV Series</Title>
-            <ul className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8">
-              {bookmarkedTvSeries.map((movie) => (
-                <PrimaryCardMovie data={movie} key={movie.id} />
-              ))}
-            </ul>
-          </article>
+          <MovieList title="Bookmarked Movies" movieList={bookmarkedMovies} />
+          <MovieList
+            title="Bookmarked TV Series"
+            movieList={bookmarkedTvSeries}
+          />
         </>
       ) : (
-        <article>
-          <Title>
-            Found {filteredMovies.length} results for `{searchPhrase}`
-          </Title>
-          <ul className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8">
-            {filteredMovies.map((movie) => (
-              <PrimaryCardMovie data={movie} key={movie.id} />
-            ))}
-          </ul>
-        </article>
+        <MovieList
+          title={`Found ${filteredMovies.length} results for '${searchPhrase}'`}
+          movieList={filteredMovies}
+        />
       )}
     </MovieViewTemplate>
   );

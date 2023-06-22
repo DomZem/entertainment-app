@@ -1,7 +1,7 @@
 import Spinner from '@/components/atoms/Spinner/Spinner';
 import Title from '@/components/atoms/Title/Title';
-import PrimaryCardMovie from '@/components/organisms/PrimaryCardMovie/PrimaryCardMovie';
 import TrendingCardMovie from '@/components/organisms/TrendingCardMovie/TrendingCardMovie';
+import MovieList from '@/components/templates/MovieList/MovieList';
 import MovieViewTemplate from '@/components/templates/MovieViewTemplate/MovieViewTemplate';
 import { useAppSelector } from '@/hooks/storeHook';
 import { type Movie } from '@/types';
@@ -44,30 +44,18 @@ const Home = () => {
                 ))}
             </ul>
           </article>
-          <article>
-            <Title>Recommended for you</Title>
-            <ul className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8">
-              {movies
-                .filter((movie) => !movie.isTrending)
-                .map((movie) => (
-                  <PrimaryCardMovie data={movie} key={movie.id} />
-                ))}
-            </ul>
-          </article>
+          <MovieList
+            title="Recommended for you"
+            movieList={movies.filter((movie) => !movie.isTrending)}
+          />
         </>
       );
     } else {
       content = (
-        <>
-          <Title>
-            Found {filteredMovies.length} results for `{searchPhrase}`
-          </Title>
-          <ul className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8">
-            {filteredMovies.map((movie) => (
-              <PrimaryCardMovie data={movie} key={movie.id} />
-            ))}
-          </ul>
-        </>
+        <MovieList
+          title={`Found ${filteredMovies.length} results for '${searchPhrase}'`}
+          movieList={filteredMovies}
+        />
       );
     }
   } else {
