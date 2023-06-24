@@ -14,7 +14,7 @@ const MovieViewTemplate: FC<MovieViewTemplateProps> = ({
 }) => {
   return (
     <main className="h-full flex flex-col overflow-hidden">
-      <div className="flex-1 pr-4 pl-4 pt-6 pb-6 md:pl-6 md:pr-6 md:pt-8 md:pb-8 xl:pt-16 xl:pl-9 xl:pr-9">
+      <div className="flex-1 pr-4 pl-4 pt-6 pb-6 md:pl-6 md:pr-6 md:pt-8 md:pb-8 xl:pt-16 xl:pl-9 xl:pr-9 xl:pb-5">
         <SearchInput
           placeholder={searchPlaceholder}
           onChange={onSearchInputChange}
