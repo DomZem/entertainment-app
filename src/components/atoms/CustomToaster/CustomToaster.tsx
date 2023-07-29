@@ -6,7 +6,7 @@ const CustomToaster = () => (
     reverseOrder={false}
     toastOptions={{
       className: 'text-base bg-primarySemiDarkBlue text-primaryWhite',
-      duration: 3500,
+      duration: 4000,
     }}
   />
 );

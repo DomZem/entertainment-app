@@ -9,7 +9,7 @@ const SearchInput: FC<SearchInputProps> = (props) => {
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
 
   return (
-    <div className="flex items-center input-wrapper  gap-4">
+    <div className="flex items-center input-wrapper gap-4">
       <MdSearch className="text-3xl" />
       <label
         className={`w-full xl:pb-4 relative ${

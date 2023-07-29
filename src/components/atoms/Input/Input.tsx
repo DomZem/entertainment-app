@@ -1,25 +1,36 @@
-import { useState, type FC, type InputHTMLAttributes } from 'react';
+/* eslint-disable react/display-name */
+import React, { useState, type InputHTMLAttributes } from 'react';
+import { type FieldError } from 'react-hook-form';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: FieldError | undefined;
+}
 
-const Input: FC<InputProps> = (props) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ error, ...props }, ref) => {
+    const [isActive, setIsActive] = useState<boolean>(false);
 
-  return (
-    <div
-      className={`w-full before:w-full ${
-        isActive ? 'before:bg-primaryWhite' : ''
-      } relative input-wrapper flex justify-between items-start`}
-    >
-      <label>
-        <input
-          className="w-full bg-transparent m-4 mt-0 border-none outline-none text-base"
-          onFocus={() => setIsActive(true)}
-          onBlur={() => setIsActive(false)}
-          {...props}
-        />
-      </label>
-    </div>
-  );
-};
+    return (
+      <div
+        className={`w-full before:w-full ${
+          isActive ? 'before:bg-primaryWhite' : ''
+        } relative input-wrapper flex justify-between p-4 pt-0 items-start
+      ${error ? 'before:bg-primaryRed' : ''}`}
+      >
+        <label>
+          <input
+            ref={ref}
+            {...props}
+            className="w-full bg-transparent border-none outline-none text-base"
+            onFocus={() => setIsActive(true)}
+            onBlur={() => setIsActive(false)}
+          />
+        </label>
+
+        {error && <p className="text-primaryRed min-w-fit">{error.message}</p>}
+      </div>
+    );
+  }
+);
+
 export default Input;

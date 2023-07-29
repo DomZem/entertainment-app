@@ -21,6 +21,10 @@
   img {
     max-width: 100%;
   }
+
+  input {
+    caret-color: var(--primaryRed);
+  }
 }
 
 @layer components {
