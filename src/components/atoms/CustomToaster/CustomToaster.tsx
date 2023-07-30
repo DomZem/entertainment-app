@@ -5,8 +5,12 @@ const CustomToaster = () => (
     position="bottom-right"
     reverseOrder={false}
     toastOptions={{
-      className: 'text-base bg-primarySemiDarkBlue text-primaryWhite',
       duration: 4000,
+      style: {
+        fontSize: '1rem',
+        background: '#161d2f',
+        color: '#ffffff',
+      },
     }}
   />
 );
