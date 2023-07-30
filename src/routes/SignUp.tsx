@@ -42,7 +42,9 @@ const SignUp = () => {
         navigate('/home');
         toast.success('Congratulations your account has been created!');
       } catch (e) {
-        console.log(e);
+        toast.error(
+          'Something went wrong. The account has not been created. Try maybe later!'
+        );
       }
     } else {
       toast.error(

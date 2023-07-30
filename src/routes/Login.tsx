@@ -5,6 +5,7 @@ import { useAppDispatch } from '@/hooks/storeHook';
 import { login } from '@/store/slices/authSlice';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { MdMovieCreation } from 'react-icons/md';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -23,13 +24,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormValues> = async ({ email, password }) => {
-    console.log('Zaptanie zostało wysłane!!!');
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      dispatch(login(user));
-      navigate('/home');
+      if (user) {
+        dispatch(login(user));
+        navigate('/home');
+      }
     } catch (e) {
-      console.log(e);
+      toast.error('Something went wrong. Try maybe later!');
     }
   };
 
@@ -41,7 +43,7 @@ const Login = () => {
         navigate('/home');
       }
     } catch (e) {
-      console.log(e);
+      toast.error('Something went wrong. Try maybe later!');
     }
   };
 

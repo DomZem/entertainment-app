@@ -92,16 +92,20 @@ export const moviesSlice = createSlice({
       })
       .addCase(fetchMovies.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'Something went wroung. Try maybe later!';
+        state.error = 'Something went wrong. Try maybe later!';
       })
       .addCase(bookmarkMovie.fulfilled, (state, action) => {
         const movieId = action.payload;
         const movie = state.movies.find((movie) => movie.id === movieId);
         if (movie) {
           movie.isBookmarked = true;
-          toast.success(`The '${movie.title}' has been bookmarked`);
+          toast(`The 🎥 '${movie.title}' 🎥 has been bookmarked`, {
+            icon: '😀',
+          });
         } else {
-          toast.error(`The movie has not been bookmarked`);
+          toast.error(
+            `Something went wrong. The movie has not been bookmarked`
+          );
         }
       })
       .addCase(unbookmarkMovie.fulfilled, (state, action) => {
@@ -109,9 +113,13 @@ export const moviesSlice = createSlice({
         const movie = state.movies.find((movie) => movie.id === movieId);
         if (movie) {
           movie.isBookmarked = false;
-          toast.success(`The '${movie.title}' has been unbookmarked`);
+          toast(`The 🎥 '${movie.title}' 🎥 has been unbookmarked`, {
+            icon: '😧',
+          });
         } else {
-          toast.error(`The movie has not been unbookmarked`);
+          toast.error(
+            `Something went wrong. The movie has not been unbookmarked`
+          );
         }
       });
   },
