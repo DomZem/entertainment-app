@@ -1,7 +1,5 @@
-![image](https://github.com/DomZem/entertainment-app/assets/117444832/2373365c-80e3-4530-8d8e-4f9f101c14db)<h1 align="center" id="title">Entertainment app</h1>
-
-<p id="description">Browse and keep your favourite's series and movies in one place.</p>
-
+<h1 align="center">Entertainment app</h1>
+<p align="center">Browse and keep your favourite's series and movies in one place.</p>
 <h2>Project Screenshots:</h2>
 
 <span>
