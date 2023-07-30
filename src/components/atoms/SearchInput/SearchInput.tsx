@@ -9,15 +9,15 @@ const SearchInput: FC<SearchInputProps> = (props) => {
   const desktopMatches = useMediaQuery('(min-width: 1280px)');
 
   return (
-    <div className="flex items-center input-wrapper gap-4">
+    <div className="input-wrapper flex items-center gap-4">
       <MdSearch className="text-3xl" />
       <label
-        className={`w-full xl:pb-4 relative ${
+        className={`relative w-full xl:pb-4 ${
           isActive ? 'before:w-full' : ''
         } ${desktopMatches ? 'input-wrapper' : ''}`}
       >
         <input
-          className="outline-none w-full border-none bg-transparent"
+          className="w-full border-none bg-transparent outline-none"
           type="text"
           onFocus={() => setIsActive(true)}
           onBlur={() => setIsActive(false)}

@@ -53,7 +53,7 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
     <motion.li variants={item}>
       <section className="relative" ref={hoverRef}>
         <img
-          className="rounded-lg w-full"
+          className="w-full rounded-lg"
           src={
             desktopMatches
               ? images.large
@@ -69,7 +69,7 @@ const PrimaryCardMovie: FC<PrimaryCardMovieProps> = ({
         />
         {desktopMatches ? <CardPlayButton isActive={isHover} /> : null}
       </section>
-      <p className="flex font-light items-center gap-[6px] md:text-[13px] text-[11px] text-primaryWhite opacity-75 mt-2 mb-1 truncate">
+      <p className="mb-1 mt-2 flex items-center gap-[6px] truncate text-[11px] font-light text-primaryWhite opacity-75 md:text-[13px]">
         {releaseYear}
         <Dot />
         {category === 'Movie' ? (

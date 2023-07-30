@@ -25,7 +25,7 @@ const MovieList: FC<MovieListProps> = ({ title, movieList }) => (
   <article>
     <Title>{title}</Title>
     <motion.ul
-      className="grid grid-cols-2 mt-6 gap-4 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4 md:gap-6 xl:gap-10 xl:mt-8"
+      className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 xl:mt-8 xl:grid-cols-4 xl:gap-10 xl:gap-x-8"
       variants={container}
       initial="hidden"
       animate="visible"

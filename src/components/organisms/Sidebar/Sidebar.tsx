@@ -40,9 +40,9 @@ const Sidebar = () => {
   };
 
   return (
-    <section className="bg-primarySemiDarkBlue flex gap-2 items-center justify-between p-4 md:m-5 md:mb-0 md:rounded-lg xl:row-span-full xl:flex-col md:p-6 xl:m-8 xl:mr-0 xl:pt-9 xl:pb-9 xl:pr-8 xl:pl-8 xl:rounded-[20px]">
-      <MdMovieCreation className="text-primaryRed text-3xl md:text-4xl" />
-      <nav className="flex gap-4 xl:flex-col md:gap-8 xl:gap-10">
+    <section className="flex items-center justify-between gap-2 bg-primarySemiDarkBlue p-4 md:m-5 md:mb-0 md:rounded-lg md:p-6 xl:row-span-full xl:m-8 xl:mr-0 xl:flex-col xl:rounded-[20px] xl:pb-9 xl:pl-8 xl:pr-8 xl:pt-9">
+      <MdMovieCreation className="text-3xl text-primaryRed md:text-4xl" />
+      <nav className="flex gap-4 md:gap-8 xl:flex-col xl:gap-10">
         {menus.map((item) => (
           <NavLink to={item.destiny} key={item.destiny}>
             <item.icon
@@ -50,17 +50,17 @@ const Sidebar = () => {
                 pathname.includes(item.destiny)
                   ? 'text-primaryWhite'
                   : 'text-primaryGreishBlue'
-              } hover:text-primaryRed duration-20`}
+              } duration-200 hover:text-primaryRed`}
             />
           </NavLink>
         ))}
         <NavLink to="/login" onClick={handleLogout}>
-          <MdLogout className="text-2xl md:text-3xl text-primaryGreishBlue hover:text-primaryRed duration-200" />
+          <MdLogout className="text-2xl text-primaryGreishBlue duration-200 hover:text-primaryRed md:text-3xl" />
         </NavLink>
       </nav>
 
       <img
-        className="w-7 h-7 md:w-8 md:h-8 xl:w-10 xl:h-10 rounded-full border-2 border-primaryWhite"
+        className="h-7 w-7 rounded-full border-2 border-primaryWhite md:h-8 md:w-8 xl:h-10 xl:w-10"
         src={user ? user.photoURL ?? unknownUser : unknownUser}
         alt="User Avatar"
       />

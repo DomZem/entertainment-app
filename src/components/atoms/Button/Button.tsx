@@ -10,9 +10,9 @@ const Button: FC<ButtonProps> = ({ children, isPrimary, ...rest }) => (
     type="submit"
     className={`${
       isPrimary
-        ? 'bg-primaryRed hover:text-primarySemiDarkBlue hover:bg-primaryWhite'
+        ? 'bg-primaryRed hover:bg-primaryWhite hover:text-primarySemiDarkBlue'
         : 'bg-primaryDarkBlue text-primaryWhite hover:bg-primaryWhite hover:text-primaryDarkBlue'
-    } p-4 rounded-md duration-200`}
+    } rounded-md p-4 duration-200`}
   >
     {children}
   </button>

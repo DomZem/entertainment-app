@@ -26,7 +26,7 @@ const Home = () => {
 
   if (moviesStatus === 'idle') {
     content = (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="flex h-full w-full items-center justify-center">
         <Spinner />
       </div>
     );
@@ -36,7 +36,7 @@ const Home = () => {
         <>
           <article>
             <Title>Trending</Title>
-            <ul className="overflow-x-auto flex gap-4 mt-4 md:mt-6 md:gap-10 no-scrollbar">
+            <ul className="no-scrollbar mt-4 flex gap-4 overflow-x-auto md:mt-6 md:gap-10">
               {movies
                 .filter((movie) => movie.isTrending)
                 .map((movie) => (
@@ -60,7 +60,7 @@ const Home = () => {
     }
   } else {
     content = (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="flex h-full w-full items-center justify-center">
         <Title>{error}</Title>
       </div>
     );

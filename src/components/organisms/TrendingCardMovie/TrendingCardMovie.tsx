@@ -57,8 +57,8 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
         isBookmarked={isBookmarked}
         onClick={isBookmarked ? handleUnbookmarkMovie : handleBookmarkMovie}
       />
-      <div className="absolute bottom-4 left-4 translate-x-1 w-full">
-        <p className="flex items-center gap-2 opacity-75 text-primaryWhite font-light text-[15px]">
+      <div className="absolute bottom-4 left-4 w-full translate-x-1">
+        <p className="flex items-center gap-2 text-[15px] font-light text-primaryWhite opacity-75">
           {releaseYear} <Dot />
           {category === 'Movie' ? (
             <RiFilmFill className="text-base" />
@@ -68,7 +68,7 @@ const TrendingCardMovie: FC<TrendingCardMovieProps> = ({
           {category} <Dot />
           {ageRestriction}
         </p>
-        <h3 className="font-medium text-[15px] mt-1 md:text-2xl">{title}</h3>
+        <h3 className="mt-1 text-[15px] font-medium md:text-2xl">{title}</h3>
       </div>
       {desktopMatches ? <CardPlayButton isActive={isHover} /> : null}
     </li>

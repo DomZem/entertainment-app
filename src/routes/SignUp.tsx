@@ -54,16 +54,16 @@ const SignUp = () => {
   };
 
   return (
-    <main className="h-screen flex justify-center items-center p-6">
-      <article className="flex flex-col items-center w-full">
-        <MdMovieCreation className="text-primaryRed text-4xl mb-14 md:mb-16 lg:mb-20" />
+    <main className="flex h-screen items-center justify-center p-6">
+      <article className="flex w-full flex-col items-center">
+        <MdMovieCreation className="mb-14 text-4xl text-primaryRed md:mb-16 lg:mb-20" />
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-primarySemiDarkBlue rounded-lg p-6 max-w-lg flex flex-col w-full"
+          className="flex w-full max-w-lg flex-col rounded-lg bg-primarySemiDarkBlue p-6"
         >
           <h1 className="text-4xl font-light">Sign Up</h1>
-          <section className="flex flex-col gap-6 mt-10 mb-10">
+          <section className="mb-10 mt-10 flex flex-col gap-6">
             <Input
               type="email"
               error={errors.email}
@@ -89,7 +89,7 @@ const SignUp = () => {
           <Button type="submit" isPrimary>
             Create an account
           </Button>
-          <p className="text-center mt-6">
+          <p className="mt-6 text-center">
             Already have an account?{' '}
             <NavLink to="/login" className="text-primaryRed">
               Login

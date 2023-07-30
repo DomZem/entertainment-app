@@ -7,11 +7,11 @@ interface CardPlayButtonProps {
 
 const CardPlayButton: FC<CardPlayButtonProps> = ({ isActive }) => (
   <div
-    className={`absolute left-0 top-0 w-full bg-opacity-50 bg-black duration-400 h-full flex justify-center items-center  ${
+    className={`duration-400 absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50  ${
       isActive ? 'visible' : 'hidden'
     }`}
   >
-    <button className="flex items-center gap-4 text-lg bg-white bg-opacity-25 p-2 pr-6 font-medium rounded-[28.5px]">
+    <button className="flex items-center gap-4 rounded-[28.5px] bg-white bg-opacity-25 p-2 pr-6 text-lg font-medium">
       <IoPlayCircleSharp className="text-5xl" />
       Play
     </button>

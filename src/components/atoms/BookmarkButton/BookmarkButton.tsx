@@ -14,7 +14,7 @@ const BookmarkButton: FC<BookmarkButtonProps> = ({ isBookmarked, ...rest }) => {
     <button
       ref={hoverRef}
       {...rest}
-      className={`absolute w-8 h-8 top-2 right-2 flex justify-center items-center duration-200 -translate-x-1 z-50 translate-y-1 rounded-full opacity-50 bg-primaryDarkBlue ${
+      className={`absolute right-2 top-2 z-50 flex h-8 w-8 -translate-x-1 translate-y-1 items-center justify-center rounded-full bg-primaryDarkBlue opacity-50 duration-200 ${
         !isBookmarked ? 'hover:bg-primaryWhite hover:opacity-100' : ''
       }`}
     >

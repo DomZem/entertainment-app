@@ -14,20 +14,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div
         className={`w-full before:w-full ${
           isActive ? 'before:bg-primaryWhite' : ''
-        } relative input-wrapper flex justify-between p-4 pt-0 items-start
+        } input-wrapper relative flex items-start justify-between p-4 pt-0
       ${error ? 'before:bg-primaryRed' : ''}`}
       >
         <label>
           <input
             ref={ref}
             {...props}
-            className="w-full bg-transparent border-none outline-none text-base"
+            className="w-full border-none bg-transparent text-base outline-none"
             onFocus={() => setIsActive(true)}
             onBlur={() => setIsActive(false)}
           />
         </label>
 
-        {error && <p className="text-primaryRed min-w-fit">{error.message}</p>}
+        {error && <p className="min-w-fit text-primaryRed">{error.message}</p>}
       </div>
     );
   }
