@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <section className="bg-primarySemiDarkBlue flex gap-2 items-center justify-between p-4 md:m-5 md:mb-0 md:rounded-lg xl:row-span-full xl:flex-col md:p-6 xl:m-8 xl:mr-0 xl:pt-9 xl:pb-9 xl:pr-8 xl:pl-8 xl:rounded-[20px]">
       <MdMovieCreation className="text-primaryRed text-3xl md:text-4xl" />
-      <nav className="flex gap-6 xl:flex-col md:gap-8 xl:gap-10">
+      <nav className="flex gap-4 xl:flex-col md:gap-8 xl:gap-10">
         {menus.map((item) => (
           <NavLink to={item.destiny} key={item.destiny}>
             <item.icon
