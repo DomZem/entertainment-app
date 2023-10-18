@@ -27,3 +27,10 @@ Technologies used in the project:
 - Redux-toolkit
 - Firebase
 - Tailwindcss
+
+<h2>🏠 Login into app without create account</h2>
+
+If you want to check app without create account with google or email, you can use that example account
+<p>Login: test@test.com</p>
+<p>Password: zaq1@WSX</p>
+
